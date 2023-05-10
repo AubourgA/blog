@@ -25,5 +25,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           server-dir: /sites/mon-blog.adrien-aubourg.fr/
 
-      - name: install vendor
-        run: composer install --no-dev
+      
+        
+    
