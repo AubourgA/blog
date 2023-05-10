@@ -11,6 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: install vendor
+        run: composer install
+        
       - name: Install Dependencies
         run: npm install
 
