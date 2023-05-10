@@ -24,7 +24,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           server-dir: /sites/mon-blog.adrien-aubourg.fr/
-
-      
         
     
