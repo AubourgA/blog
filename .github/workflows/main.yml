@@ -22,5 +22,6 @@ jobs:
         with:
           server: ${{ secrets.SERVER }}
           username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
           local-dir: ./
           server-dir: /mon-blog.adrien-aubourg.fr
