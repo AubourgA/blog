@@ -11,9 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+
       - name: install vendor
-        run: composer install
-        
+        run: |
+            composer install --no-dev --no-progress --no-script
+            composer dump-env prod
+
       - name: Install Dependencies
         run: npm install
 
