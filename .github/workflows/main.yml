@@ -18,11 +18,8 @@ jobs:
 
       - name: Build
         run: npm run build
-        
-      - name: install vendor
-        run: |
-            composer install --no-dev
-            composer dump-env prod
+
+            
 
       - name: Upload to Server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
@@ -31,3 +28,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           server-dir: /sites/mon-blog.adrien-aubourg.fr/
+
+      - name: install vendor
+        run: composer install --no-dev
