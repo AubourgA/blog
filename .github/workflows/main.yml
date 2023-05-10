@@ -14,7 +14,7 @@ jobs:
 
       - name: install vendor
         run: |
-            composer install --no-dev --no-progress --no-script
+            composer install --no-dev --no-progress
             composer dump-env prod
 
       - name: Install Dependencies
