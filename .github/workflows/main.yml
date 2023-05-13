@@ -16,9 +16,14 @@ jobs:
 
       - name: Build
         run: npm run build
-
-      - name: clear cache
-        run: bin/console cache:clear
+        
+      - name: Cache Composer
+        uses: actions/cache@v2
+        with:
+            path: ~/.composer/cache/
+            key: composer-${{ hashFiles('composer.lock') }}
+            restore-keys: composer-
+   
 
       - name: Upload to Server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
