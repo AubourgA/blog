@@ -26,4 +26,5 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           server-dir: /sites/mon-blog.adrien-aubourg.fr/
         
-    
+      - name: clear cache
+        run: php bin/console cache:clear
