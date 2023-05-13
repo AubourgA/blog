@@ -17,21 +17,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      # Install backend dependencies (Composer)
-      - name: Validate composer.json and composer.lock
-        run: composer validate --no-check-publish
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Cache composer dependencies
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-      - name: Install Composer dependencies
-        run: composer install
-
       - name: Upload to Server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
