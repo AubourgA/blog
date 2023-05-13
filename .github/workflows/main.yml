@@ -17,6 +17,8 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: clear cache
+        run: bin/console cache:clear
 
       - name: Upload to Server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
@@ -26,5 +28,3 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           server-dir: /sites/mon-blog.adrien-aubourg.fr/
         
-      - name: clear cache
-        run: bin/console cache:clear
