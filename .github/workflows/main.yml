@@ -27,4 +27,4 @@ jobs:
           server-dir: /sites/mon-blog.adrien-aubourg.fr/
         
       - name: clear cache
-        run: php bin/console cache:clear
+        run: bin/console cache:clear
