@@ -3,7 +3,7 @@ deploy: public/build/manifest.json
 	ssh infotuto 'cd ~/sites/mon-blog.adrien-aubourg.fr && git pull origin main && make install'
 
 install: vendor/autoload.php
-	php console/bin cache:clear
+	php /console cache:clear
 
 
 vendor/autoload.php: composer.lock
