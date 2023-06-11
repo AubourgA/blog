@@ -1,5 +1,5 @@
 deploy: public/build/manifest.json
-	rsync -avz public/build infotuto:~/sites/mon-blog.adrien-aubourg.fr
+	rsync -avz public/build infotuto:~/sites/mon-blog.adrien-aubourg.fr/public
 	ssh infotuto 'cd ~/sites/mon-blog.adrien-aubourg.fr && git pull origin main && make install'
 
 install: vendor/autoload.php
