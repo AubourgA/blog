@@ -3,57 +3,73 @@
 namespace App\Tests;
 
 use App\Entity\Author;
+use App\Entity\Comment;
+use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class AuthorTest extends KernelTestCase
 {
-
-    private function getEntity() : Author
+    
+    public function getEntity(): Author
     {
-        return new Author;
+
+        return (new Author);        ;
     }
 
-    public function testEntityisValid(): void
-    {
-        self::bootKernel();
-        //recuperer le container
-        $container = static::getContainer();
-
-
-        $author = $this->getEntity();
-        $author->setName('adrien');
-
-        //count error
-        $errors = $container->get('validator')->validate($author);
-
-        $this->assertCount(0, $errors);
-    }
-
-    public function testEntityisNotValid(): void
+    
+    public function assertHasErrors(Author $author, int $number, string $message)
     {
         self::bootKernel();
-        //recuperer le container
-        $container = static::getContainer();
-
-
-        $author = $this->getEntity();
-        $author->setName('');
-
-        //count error
-        $errors = $container->get('validator')->validate($author);
-
-        $this->assertCount(1, $errors);
+        $error = static::getContainer()->get('validator')->validate($author);
+        $this->assertCount($number, $error, $message);
     }
-   
 
-    public function testAuthorIsRecorded()
+    /** @test */
+    public function nameAuthorIsOnlyString(): void
     {
-        self::bootKernel();
-        //recuperer le container
-        $container = static::getContainer();
+      
+        $this->assertHasErrors($this->getEntity()->setName("jean"),0, 'nameAuthor has not only string');
+      
 
-        $author = $container->get('doctrine.orm.default_entity_manager')->find(Author::class, 1);
-       
-        $this->assertEquals('Adrien', $author->getName(), 'ce n est pas egual a l entree');
     }
-}
+
+        /** @test */
+        public function nameAuthorIsNotOnlyString(): void
+        {
+          
+            $this->assertHasErrors($this->getEntity()->setName(""),1, 'nameAuthor is not only string but blanck');
+    
+        }
+
+               /** @test */
+            //    public function nameAuthorIsBlanck(): void
+            //    {
+                 
+            //       $author = (new Author())
+            //                    ->setName(" ")
+            //                    ->addComment( new Comment);
+                               
+            //        self::bootKernel();
+            //       $container = static::getContainer();
+            //        $error = $container->get('validator')->validate($author);
+           
+            //        $this->assertCount(1, $error, "nameAuthoris not blank");
+           
+            //    }
+               
+                   /** @test */
+                //    public function nameAuthorIsNotNull(): void
+                //    {
+                     
+                //       $author = (new Author())
+                //                    ->setName(" ")
+                //                    ->addComment( new Comment);
+                                   
+                //        self::bootKernel();
+                //       $container = static::getContainer();
+                //        $error = $container->get('validator')->validate($author);
+               
+                //        $this->assertCount(1, $error);
+               
+                //    }
+    }

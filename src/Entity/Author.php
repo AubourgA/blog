@@ -25,7 +25,7 @@ class Author
         )]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Comment::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Comment::class, orphanRemoval: true, cascade:["persist"])]
     private Collection $comments;
 
     public function __construct()
@@ -78,5 +78,11 @@ class Author
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+
+        return $this->name;
     }
 }
